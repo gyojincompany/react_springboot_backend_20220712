@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0/EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gyojincompany.userlist.dao.IDao">
+	
+	<select id="userList" resultType="com.gyojincompany.userlist.dto.UserDto">
+		SELECT * FROM react_board ORDER BY id	
+	</select>
+	
+	<select id="userById" resultType="com.gyojincompany.userlist.dto.UserDto" parameterType="int">
+		SELECT * FROM react_board WHERE id = #{id}
+	</select>
+
+	<insert id="insertUser" parameterType="com.gyojincompany.userlist.dto.UserDto">
+		INSERT INTO react_board(id, username, phone, nickname, age, membership)
+		VALUES(react_seq.nextval, #{username}, #{phone}, #{nickname}, #{age}, #{membership})
+	</insert>
+	
+	<delete id="deleteUser" parameterType="int">
+		DELETE FROM react_board WHERE id = #{id}
+	</delete>
+	
+	<update id="updateUser" parameterType="com.gyojincompany.userlist.dto.UserDto">
+		UPDATE react_board SET phone=#{phone}, nickname=#{nickname}, age=#{age}, membership=#{membership}
+		WHERE id = #{id}
+	</update>
+	
+
+</mapper>	
+
+
+
+
+
